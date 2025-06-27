@@ -229,6 +229,24 @@
       opacity: 0.4;
       cursor: not-allowed;
     }
+
+    .grid-container {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+}
+
+@media (min-width: 768px) {
+  .grid-container {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .grid-container {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
   </style>
 </head>
 <body>
@@ -374,6 +392,57 @@
       </button>
     </div>
   </div>
+
+  <!-- Grid Section -->
+<div class="scroll-section">
+  <h2>More Rewards</h2>
+  <div class="grid-container">
+    <div class="prize-card">
+      <img src="https://picsum.photos/300/200?random=11" class="prize-img" alt="Prize 9">
+      <h3 class="prize-name">Water Bottle</h3>
+      <div class="meta">Referrals: 3, Stock: 15 left</div>
+      <div class="tags">
+        <span class="tag">Location: Enugu</span>
+        <span class="tag">Time: 5hrs</span>
+        <span class="tag">Pickup</span>
+        <span class="tag">Delivered by: Brand</span>
+      </div>
+    </div>
+    <div class="prize-card">
+      <img src="https://picsum.photos/300/200?random=12" class="prize-img" alt="Prize 10">
+      <h3 class="prize-name">Keychain</h3>
+      <div class="meta">Referrals: 2, Stock: 30 left</div>
+      <div class="tags">
+        <span class="tag">Location: Abuja</span>
+        <span class="tag">Time: 12hrs</span>
+        <span class="tag">Pickup</span>
+        <span class="tag">Delivered by: Brand</span>
+      </div>
+    </div>
+    <div class="prize-card">
+      <img src="https://picsum.photos/300/200?random=13" class="prize-img" alt="Prize 11">
+      <h3 class="prize-name">Sunglasses</h3>
+      <div class="meta">Referrals: 12, Stock: 5 left</div>
+      <div class="tags">
+        <span class="tag">Location: Lagos</span>
+        <span class="tag">Time: 9hrs</span>
+        <span class="tag">Delivery</span>
+        <span class="tag">Delivered by: Brand</span>
+      </div>
+    </div>
+    <div class="prize-card">
+      <img src="https://picsum.photos/300/200?random=14" class="prize-img" alt="Prize 12">
+      <h3 class="prize-name">Notebook</h3>
+      <div class="meta">Referrals: 4, Stock: 10 left</div>
+      <div class="tags">
+        <span class="tag">Location: Ibadan</span>
+        <span class="tag">Time: 3hrs</span>
+        <span class="tag">Pickup</span>
+        <span class="tag">Delivered by: Brand</span>
+      </div>
+    </div>
+  </div>
+</div>
 
   <script>
   function getScrollAmount(container) {
