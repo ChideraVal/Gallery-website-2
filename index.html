@@ -144,7 +144,7 @@
       background: var(--card-bg);
       border-radius: 10px;
       box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
-      padding: 15px;
+      padding: 10px;
       scroll-snap-align: start;
       box-sizing: border-box;
     }
@@ -376,18 +376,42 @@
   </div>
 
   <script>
-    function getScrollAmount(container) {
-      const screenWidth = window.innerWidth;
-      if (screenWidth < 600) return container.offsetWidth * 0.7;
-      if (screenWidth < 1024) return container.offsetWidth * 0.32 * 3;
-      return container.offsetWidth * 0.23 * 4;
-    }
+  function getScrollAmount(container) {
+    const screenWidth = window.innerWidth;
+    if (screenWidth < 600) return container.offsetWidth * 0.7;
+    if (screenWidth < 1024) return container.offsetWidth * 0.32 * 3;
+    return container.offsetWidth * 0.23 * 4;
+  }
 
-    function scrollById(id, direction) {
-      const container = document.getElementById(id);
-      const amount = getScrollAmount(container);
-      container.scrollBy({ left: direction * amount, behavior: 'smooth' });
-    }
+  function updateButtonState(containerId) {
+    const container = document.getElementById(containerId);
+    const prevBtn = container.parentElement.querySelector('.scroll-button:first-child');
+    const nextBtn = container.parentElement.querySelector('.scroll-button:last-child');
+
+    prevBtn.disabled = container.scrollLeft <= 5;
+    nextBtn.disabled = container.scrollLeft + container.offsetWidth >= container.scrollWidth - 5;
+  }
+
+  function scrollById(id, direction) {
+    const container = document.getElementById(id);
+    const amount = getScrollAmount(container);
+    container.scrollBy({ left: direction * amount, behavior: 'smooth' });
+
+    // Delay to allow smooth scroll to finish before updating
+    setTimeout(() => updateButtonState(id), 400);
+  }
+
+  function initScrollTracking(id) {
+    const container = document.getElementById(id);
+    container.addEventListener('scroll', () => updateButtonState(id));
+    updateButtonState(id); // Initial state
+  }
+
+  // Initialize both scroll containers
+  document.addEventListener('DOMContentLoaded', () => {
+    initScrollTracking('scrollPopular');
+    initScrollTracking('scrollNew');
+  });
   </script>
 </body>
 </html>
